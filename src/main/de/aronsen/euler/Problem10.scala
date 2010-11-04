@@ -2,10 +2,11 @@ package de.aronsen.euler
 
 class Problem10 {
   def calculateSumOfPrimesBelow(n: Int): Long = {
+    val primesUpTo200: List[Int] = calculatePrimesUpTo(200)
+    def couldBePrime(n: Int) = primesUpTo200.forall(p => p == n || n % p != 0)
+
     2 + (3 to n by 2).foldLeft(0L)((s, i) => if (couldBePrime(i) && isPrime(i)) s + i else s)
   }
-
-  def couldBePrime(n: Int) = calculatePrimesUpTo(200).forall(p => p == n || n % p != 0)
 
   def isPrime(n: Int) = (2 to Math.sqrt(n).toInt) forall (n % _ != 0)
 
